@@ -8,7 +8,13 @@ class entry{
 public:
     virtual entry* get_entry(){
         std::cout << "get get_entry" << std::endl;
+        return this;
     };
+
+    virtual entry get_entry_object(){
+        std::cout << "get get_entry_object" << std::endl;
+        return *this;
+    }
 };
 
 //child1
@@ -27,6 +33,20 @@ class volume_entry: public entry{
             std::cout << "get volume_entry" << std::endl;
             return this;
         }
+
+        entry get_entry_object(){
+            std::cout << "get volume_entry_object" << std::endl;
+            return *this;
+        }
+        int test_volume_entry(){
+            std::cout << "test_volume_entry" << std::endl;
+            return 0;
+        }
+
+
+        int get_volume_type(){
+            return 0;
+        }
 };
 
 //child2
@@ -42,5 +62,20 @@ class extent_group_entry: public entry{
         extent_group_entry* get_entry(){
             std::cout << "get extent_group_entry" << std::endl;
             return this;
+        }
+
+        entry get_entry_object(){
+            std::cout << "get extent_group_entry_object" << std::endl;
+            return *this;
+        }
+
+        int test_extent_group_entry(){
+            std::cout << "test_extent_group_entry" << std::endl;
+            return 0;
+        }
+
+
+        int get_extent_group_entry(){
+            return 1;
         }
 };

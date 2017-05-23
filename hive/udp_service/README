@@ -1,0 +1,23 @@
+
+apt-get install libmsgpack-dev
+
+/*add to main.cc*/
+#include "udp_service/udp_server.hh
+
+uint16_t udp_port = 55555; 
+auto& dist_udp_server = get_udp_server();
+dist_udp_server.start().then([&dist_udp_server, udp_port] () mutable {
+    engine().at_exit([&dist_udp_server] {
+        return dist_udp_server.stop();
+    });
+    dist_udp_server.invoke_on(0, &udp_server::start, udp_port);
+    //dist_udp_server.invoke_on_all(&udp_server::start, udp_port);
+}).then([udp_port] {
+    std::cout << "Seastar UDP server listening on port " << udp_port << " ...\n";
+});
+
+
+
+
+
+
