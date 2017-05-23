@@ -1,3 +1,3 @@
 # simunny22
-just for test
-just for test 1
+
+a bit of simple programing language instance
