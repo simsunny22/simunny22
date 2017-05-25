@@ -4,6 +4,9 @@
 #include <string>
 #include <boost/intrusive/unordered_set.hpp>
 
+//reference
+//http://blog.csdn.net/ac_huang/article/details/38361263
+
 using namespace std;
 
 //for map and set
