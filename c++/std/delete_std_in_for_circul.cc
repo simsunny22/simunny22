@@ -50,7 +50,7 @@ void test_delete(){
     vector<int> test;
     test.push_back(28);   //wz
     test.push_back(26);   //wd
-    test.push_back(27);   //ch
+    test.push_back(37);   //ch
     test.push_back(25);   //dn
 
     cout << "---------------iteor begin ----------------------" << endl;
@@ -90,11 +90,25 @@ void test_delete(){
 }
 
 
+void test_map_insert(){
+    map<string, int> test;
+    //test.insert(std::make_pair("wz", 25));
+    //test.insert(std::make_pair("wz", 26));
+
+    test.emplace("wz", 25);
+    test.emplace("wz", 26);
+
+    auto it = test.find("wz");
+    cout << "age:" << it->second << endl;
+
+    
+}
 
 // g++ -std=c++11 delete_std_in_for_circul.cc
 int main(){
-    cout << "********************** vector delete ****************************" << endl;
-    test_delete();
-    cout << "********************** map delete ****************************" << endl;
-    test_key_delete();
+    test_map_insert();
+    //cout << "********************** vector delete ****************************" << endl;
+    //test_delete();
+    //cout << "********************** map delete ****************************" << endl;
+    //test_key_delete();
 }
