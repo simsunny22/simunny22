@@ -1,4 +1,5 @@
 #include <boost/intrusive/list.hpp>
+#include <boost/intrusive/set.hpp>
 #include <iostream>
 namespace bi = boost::intrusive;
 
@@ -11,6 +12,8 @@ public:
     //bi::list_member_hook<> hook1_;
     bi::list_member_hook<bi::link_mode<bi::auto_unlink>> hook_;
     bi::list_member_hook<bi::link_mode<bi::auto_unlink>> hook1_;
+    //bi::set_member_hook<bi::link_mode<bi::auto_unlink>> hook2_;
+
 
 Foo(){
     std::cout << "create" << std::endl;
@@ -18,6 +21,10 @@ Foo(){
 ~Foo(){
     std::cout << "destroy" << std::endl;
 }
+};
+
+class test{
+    bi::set_member_hook<> hook1_;
 };
 
 //typedef bi::member_hook<Foo, bi::list_member_hook<>, &Foo::hook_> MemberHookOption;
