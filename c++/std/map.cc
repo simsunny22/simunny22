@@ -57,6 +57,9 @@ void test_key_delete(){
     }
 }
 
+void test_map_del_by_key(){
+}
+
 
 void test_map_insert(){
     map<string, int > test;

@@ -5,6 +5,8 @@
 namespace bi = boost::intrusive;
 
 
+//using lru_link_type = bi::list_member_hook<bi::link_mode<bi::auto_unlink>>;
+
 class Foo{
     std::string _name;
     int _age;
@@ -23,18 +25,18 @@ public:
         std::cout << "create params" << std::endl;
     }
 
-    Foo(Foo&& o) noexcept;
-
-
     ~Foo(){
         std::cout << "destroy" << std::endl;
     }
 
     void print(){
-        std::cout  << "foo, _name:" << _name  << std::endl;
-        std::cout  << "foo, _age:" << _age  << std::endl;
+        std::cout  << "foo, value:" << _age  << std::endl;
     }
-
+ 
+   //friend bool operator< (const Foo &a, const Foo &b)
+   //   {  return a._age < b._age;  }
+   //friend bool operator> (const Foo &a, const Foo &b)
+   //   {  return a._age > b._age;  }
    friend bool operator == (const Foo &a, const Foo &b)
       {  return a._name == b._name;  }
 
@@ -45,17 +47,30 @@ public:
        }
        
        inline bool operator () (const Foo& f, const std::string& s) const {
+           std::cout << "11111 f_name:" << f._name << std::endl;
+           std::cout << "11111 s:" << s << std::endl;
+           //auto res = f._name == s;
            auto res = f._name > s;
+           std::cout << "1111 res:" << res << std::endl;
            return res;
        }
 
        inline bool operator () (const std::string& s, const Foo& f) const {
+           std::cout << "222 res:" << f._name << std::endl;
            auto res =  f._name < s;
+           std::cout << "222 res:" << res << std::endl;
            return res;
+           //return f._name == s;
        }
        
    };
 
+   //friend bool operator< (std::string name, const Foo &a)
+   //   {  return a._name < name;  }
+   //friend bool operator> (std::string name, const Foo &a)
+   //   {  return a._name > name;  }
+   //friend bool operator== (std::string name, const Foo &a)
+   //   {  return a._name < name;  }
 };
 
 typedef bi::member_hook<Foo, bi::set_member_hook<bi::link_mode<bi::auto_unlink>>, &Foo::hook_> MemberHookOption;
@@ -69,29 +84,19 @@ struct delete_disposer
    }
 };
 
-//int main(){
-//    Foo* foo_object = new Foo("wuzhao", 26);
-//    fooset fset;
-//    fset.insert(*foo_object);
-//
-//    Foo* dst = new Foo();
-//    new(dst) Foo(std::move(*foo_object));
-//    
-//    //new (static_cast<T*>(dst)) T(std::move(*src_t));
-//
-//
-//    auto it = fset.find("wuzhao", Foo::compare());
-//
-//    if(it != fset.end()){
-//        it->print();
-//    }else{
-//       std::cout << "not find " << std::endl;
-//    }
-//    
-//    
-//    std::cout << "size:" << fset.size() << std::endl;
-//
-//
-//    //FooList1::s_iterator_to(*foo_object);
-//}
+int main(){
+    Foo* foo_object = new Foo("wuzhao", 26);
+    fooset fset;
+    //fooset fset();
+    fset.insert(*foo_object);
+    auto it = fset.find("wuzhao", Foo::compare());
+
+    if(it != fset.end()){
+        it->print();
+    }else{
+       std::cout << "not find " << std::endl;
+    }
+    std::cout << "size:" << fset.size() << std::endl;
+    //FooList1::s_iterator_to(*foo_object);
+}
 

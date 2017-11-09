@@ -8,6 +8,11 @@ Type test_fun(Type i1, Type i2){
     return i1 + i2;
 }
 
+//template<class Type , class int = 10>
+//Type test_fun1(Type i1, int i2){
+//    return i1;
+//}
+
 
 class test{
 private:

@@ -20,6 +20,8 @@ void test_shared_ptr();
 vector<int> vector_reduce(vector<int> new_files, vector<int> old_files);
 
 int main(){
+   size_t i;
+   cout<< "size_t:" << sizeof(i) << endl;
    //string a = "#eztest";
    //test_class_point();
    //cout << "-------------------------" << endl;
@@ -29,7 +31,7 @@ int main(){
    cout << "-------------------------" << endl;
    //test_vector_reduce();
    //test_jicheng();
-   test_shared_ptr();
+   //test_shared_ptr();
 }
 
 
