@@ -8,18 +8,12 @@ struct Stu {
 void test_ptr_const() {
     int a =100;
 
-    //int *const ptr1;
-    //ptr1=&a;
-
     int *const ptr1=&a;
     *ptr1=300;
 }
 
 void test_ptr_const1() {
     struct Stu stu1 = {.name="wztest", .age=22};
-
-    //struct Stu *const ptr1;
-    //ptr1=&stu1l
 
     struct Stu *const ptr1 = &stu1; 
     ptr1->name="wdtest";
