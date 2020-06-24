@@ -3,7 +3,6 @@
 #include <string.h>
 
 
-
 bool find(char key, std::map<char, bool>& clist) {
     std::map<char, bool>::iterator it = clist.find(key);
     if (it != clist.end()) {
